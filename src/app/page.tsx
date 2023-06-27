@@ -1,7 +1,5 @@
-"use client";
-
-import Post from "@/blog/post-001.mdx"
+import Counter from "@/components/Counter";
 
 export default function BlogPost() {
-  return <Post />
+  return <Counter />;
 }
