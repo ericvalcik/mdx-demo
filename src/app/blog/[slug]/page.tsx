@@ -5,16 +5,16 @@ import dynamic from 'next/dynamic';
 type BlogPostProps = {
   params: {
     slug: string;
-  }
-}
+  };
+};
 
 export default async function BlogPost({ params: { slug } }: BlogPostProps) {
-  const Component = await dynamic(() => import((`@/blog/${slug}.mdx`)));
+  const Component = await dynamic(() => import((`@/blog/${slug}.mdx`)), { ssr: false});
   return <Component />
 }
 
 const getFiles = () => {
-  const files = readdirSync(join(process.cwd(), "src", "app", "blog"));
+  const files = readdirSync(join(process.cwd(), "src", "blog"));
   return files.map((file) => file.replace(/\.mdx/, ""));
 }
 
