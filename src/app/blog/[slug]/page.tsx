@@ -12,7 +12,8 @@ export default async function BlogPost({ params: { slug } }: BlogPostProps) {
   const Component = await dynamic(() => import(`@/blog/${slug}.mdx`), {
     ssr: false,
   });
-  return <Component />;
+  // @ts-ignore
+  return <Component fileName={slug} />;
 }
 
 const getFiles = () => {
