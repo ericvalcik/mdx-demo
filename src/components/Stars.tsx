@@ -6,8 +6,12 @@ export const Stars = async () => {
   const { stargazers_count: stars } = await response.json();
 
   return (
-    <p>
-      MailingUI has <strong>{stars}</strong> stars!
-    </p>
+    <div className="flex">
+      <div className="p-4 border border-solid border-gray-200 rounded-xl my-2">
+        <p>
+          MailingUI has <strong>{stars}</strong> stars!
+        </p>
+      </div>
+    </div>
   );
 };
