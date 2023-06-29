@@ -1,10 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FC } from "react";
 import styles from "./Counter.module.css";
 
-function MyButton() {
+const MyButton: () => Promise<JSX.Element> = async () => {
   const [count, setCount] = useState(0);
+  const response: { message: string } = await fetch("/api/get-string").then(
+    (res) => res.json()
+  );
 
   function handleClick() {
     setCount(count + 1);
@@ -15,10 +18,11 @@ function MyButton() {
       <button onClick={handleClick} className={styles.counter}>
         Clicked {count} times
       </button>
+      <p>and btw... {response.message}</p>
     </div>
   );
-}
+};
 
-export default function MyApp() {
+export default async function MyApp() {
   return <MyButton />;
 }
