@@ -20,8 +20,3 @@ const getFiles = () => {
   const files = readdirSync(join(process.cwd(), "src", "blog"));
   return files.map((file) => file.replace(/\.mdx/, ""));
 };
-
-export async function generateStaticParams() {
-  const files = getFiles();
-  return files.map((slug) => ({ slug }));
-}

@@ -1,19 +1,12 @@
-import Counter from "@/components/Counter";
+import dynamic from "next/dynamic";
 
-export default function BlogPost() {
-  return (
-    <div className="flex flex-col gap-4 p-10">
-      <div>
-        Try to go to{" "}
-        <a href={`/blog/post-001`} className="underline">
-          /blog/post-001
-        </a>{" "}
-        and{" "}
-        <a href={`/blog/stars`} className="underline">
-          /blog/stars
-        </a>{" "}
-        and check the code in the repo.
-      </div>
-    </div>
-  );
+export default async function BlogPost() {
+  const Component = await dynamic(() => import(`@/blog/post-001.mdx`), {
+    ssr: false,
+  });
+  return <Component />;
+}
+
+export async function generateStaticParams() {
+  return ["post-001"];
 }
