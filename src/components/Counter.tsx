@@ -2,8 +2,8 @@
 
 import { useState, FC } from "react";
 
-const MyButton = () => {
-  const [count, setCount] = useState(0);
+export const Counter: FC<{ init: number }> = ({ init }) => {
+  const [count, setCount] = useState(init);
 
   function handleClick() {
     setCount(count + 1);
@@ -25,7 +25,3 @@ const MyButton = () => {
     </div>
   );
 };
-
-export default function MyApp() {
-  return <MyButton />;
-}

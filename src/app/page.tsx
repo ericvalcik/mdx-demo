@@ -1,12 +1,14 @@
-import dynamic from "next/dynamic";
+import Link from "next/link";
 
 export default async function BlogPost() {
-  const Component = await dynamic(() => import(`@/blog/post-001.mdx`), {
-    ssr: false,
-  });
-  return <Component />;
-}
-
-export async function generateStaticParams() {
-  return ["post-001"];
+  return (
+    <div>
+      <p>
+        try going to{" "}
+        <Link href="/blog/post-001" className="underline">
+          /blog/post-001
+        </Link>
+      </p>
+    </div>
+  );
 }

@@ -1,5 +1,3 @@
-import { readdirSync } from "fs";
-import { join } from "path";
 import dynamic from "next/dynamic";
 
 type BlogPostProps = {
@@ -9,14 +7,7 @@ type BlogPostProps = {
 };
 
 export default async function BlogPost({ params: { slug } }: BlogPostProps) {
-  const Component = await dynamic(() => import(`@/blog/${slug}.mdx`), {
-    ssr: false,
-  });
+  const Component = await dynamic(() => import(`@/blog/${slug}.mdx`));
   // @ts-ignore
-  return <Component fileName={slug} />;
+  return <Component init={5} />;
 }
-
-const getFiles = () => {
-  const files = readdirSync(join(process.cwd(), "src", "blog"));
-  return files.map((file) => file.replace(/\.mdx/, ""));
-};
